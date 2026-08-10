@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        #nav ul{
+            display: flex;
+            padding: 15px 0;
+        }
+        #nav ul li{
+            margin-right: 15px;
+        }
+        .nav-item{
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: blue;
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.3rem;
+            display: block;
+            width: 100%;
+            border:2px solid blue;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        input:focus{
+            outline: none;
+            border-color:green;
+        }
+        #form1{
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .btn{
+            display: block;
+            width:90%;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            background-color: #ace5ac;
+            color: green;
+            outline: none;
+            border:1px solid green;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .btn:hover{
+            background-color: #6cb56c;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        table{
+            max-width: 750px;
+            margin: 15px auto;
+            border:1px solid black;
+            text-align: center;
+        }
+
+        table#country-table tr:first-child{
+           padding: 15px;
+            background-color: #ccc;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        table td{
+            width: 250px;
+            padding: 15px;
+        }
+
+        table tr:nth-child(even){
+            background-color: #a9c0e0;
+        }
+        table tr:nth-child(odd){
+            background-color: #a9dee0;
+        }
+        #alert{
+            position: fixed;
+            left:20px;
+            bottom: 20px;
+            width: 200px;
+            height: 150px;
+            border: 1px solid red;
+            background-color: #dd7676;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="nav">
+        <ul>
+            <li><a class="nav-item" href="#item1">Item 1</a></li>
+            <li><a class="nav-item" href="#item2">Item 2</a></li>
+            <li><a class="nav-item" href="#item3">Item 3</a></li>
+            <li><a class="nav-item" href="#item4">Item 4</a></li>
+        </ul>
+    </div>
+    <hr>
+    <form id="form1" action="#">
+        <input type="text" placeholder="Type your name" name="name">
+        <input type="text" placeholder="Type your surename" name="surename">
+        <button class="btn">Send</button>
+    </form>
+    <hr>
+    <table id="country-table">
+        <tr>
+            <th>Europe</td>
+            <th>Asia</td>
+            <th>America</td>
+        </tr>
+        <tr>
+            <td>Ukraine</td>
+            <td>Israel</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Germany</td>
+            <td>Russia</td>
+            <td>Canada</td>
+        </tr>
+        <tr>
+            <td>Poland</td>
+            <td>Chine</td>
+            <td>Mexico</td>
+        </tr>
+    </table>
+</div>
+<div id="alert">
+    <p class="message"></p>
+</div>
+
+
+<!--JAVASCRIPT START-->
+<script>
+    const buttons = document.querySelectorAll(".nav-item");
+    const messageBox = document.querySelector("#alert .message");
+    for (let key in buttons){
+        buttons[key].onclick = function (){
+            messageBox.innerHTML = `Clicked by Item ${parseInt(key) + 1}`
+        }
+    }
+
+    const form1 = document.querySelector("#form1");
+    form1.onsubmit = function (e){
+        e.preventDefault();
+        const name = e.target.name.value || 'NoName';
+        const surename = e.target.surename.value || 'NoSurename';
+        messageBox.innerHTML = `${name} ${surename}`;
+    }
+</script>
+<!--JAVASCRIPT END-->
+</body>
+</html>
